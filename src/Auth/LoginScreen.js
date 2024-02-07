@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Store/auth-context'; 
 import './LoginScreen.css';
-import { Link } from 'react-router-dom';
 
 const LoginScreen = ({ onLoginSuccess }) => {
+    const navigate = useNavigate();
+    const authContext = useContext(AuthContext);
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -17,46 +21,33 @@ const LoginScreen = ({ onLoginSuccess }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-    
-        // Check if all fields are filled
+
         if (!formData.email || !formData.password) {
             setError('All fields are mandatory');
             return;
         }
-    
+
         try {
-            // Login user using Firebase Authentication REST API
-            const response = await fetch(
-                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAZcxqgzb2T7zNGyr3Bm4F4KJGFYPqPfYY',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: formData.email,
-                        password: formData.password,
-                        returnSecureToken: true,
-                    }),
-                }
-            );
-    
+            const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAZcxqgzb2T7zNGyr3Bm4F4KJGFYPqPfYY', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    password: formData.password,
+                }),
+            });
+
             const data = await response.json();
-    
+
             if (response.ok) {
                 console.log('User has successfully logged in');
-                setError(null); // Clear any previous errors
-                onLoginSuccess(data.idToken); // Pass the token to the parent component
-    
-                // Reset the login form after successful login
-                setFormData({
-                    email: '',
-                    password: '',
-                });
+                setError(null);
+                authContext.login(data.idToken); // Assuming the API returns an 'idToken' upon successful login
+                navigate('/welcome');
             } else {
-                // Check if the error message is available in the response
-                const errorMessage = data.error?.message || 'Invalid credentials';
-                setError(errorMessage);
+                setError('Invalid credentials');
             }
         } catch (error) {
             console.error('An error occurred during login:', error);
@@ -86,6 +77,6 @@ const LoginScreen = ({ onLoginSuccess }) => {
             </p>
         </div>
     );
-}
+};
 
 export default LoginScreen;
