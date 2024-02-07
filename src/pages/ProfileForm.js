@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../Store/auth-context';
+import { useNavigate } from 'react-router-dom';
 import './ProfileForm.css';
 
 const ProfileForm = () => {
     const { token } = useAuth();
+    const navigate = useNavigate();
     const [fullName, setFullName] = useState('');
     const [photoUrl, setPhotoUrl] = useState('');
     const [error, setError] = useState('');
@@ -70,6 +72,7 @@ const ProfileForm = () => {
             }
 
             console.log('Profile updated successfully:', data);
+            navigate('/welcome');
         } catch (error) {
             setError(error.message);
             console.error('Error updating profile:', error);
