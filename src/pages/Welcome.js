@@ -1,11 +1,11 @@
-import React,{ useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../Store/auth-context';
+import Expense from '../Layout/Expense';
 import './Welcome.css';
 
 const Welcome = () => {
     const { user } = useContext(AuthContext);
-
     return (
         <div className="welcome-container">
             <h2>Welcome to Expense Tracker</h2>
@@ -23,6 +23,7 @@ const Welcome = () => {
                     </p>
                 </div>
             )}
+            <Expense />
         </div>
     );
 };
