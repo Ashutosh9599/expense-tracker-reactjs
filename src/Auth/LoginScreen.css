@@ -60,3 +60,15 @@
     border: 1px solid #64d1e4;
     border-radius: 5px;
 }
+.Forgot-Password {
+    color: #0077ff;
+    margin-top: 10px;
+    background-color: #ecffff;
+    padding: 10px;
+    border: 1px solid #64d1e4;
+    border-radius: 5px;
+    align-items: center;
+}
+.fp-link{
+    margin-left: 128px;
+}

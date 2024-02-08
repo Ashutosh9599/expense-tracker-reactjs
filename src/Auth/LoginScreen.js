@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../Store/auth-context'; 
+import { AuthContext } from '../Store/auth-context';
 import './LoginScreen.css';
 
 const LoginScreen = ({ onLoginSuccess }) => {
@@ -44,7 +44,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
             if (response.ok) {
                 console.log('User has successfully logged in');
                 setError(null);
-                authContext.login(data.idToken); // Assuming the API returns an 'idToken' upon successful login
+                authContext.login(data.idToken); 
                 navigate('/welcome');
             } else {
                 setError('Invalid credentials');
@@ -68,12 +68,15 @@ const LoginScreen = ({ onLoginSuccess }) => {
                     Password:
                     <input type="password" name="password" value={formData.password} onChange={handleChange} />
                 </label>
+                <p className="Forgot-Password">
+                <Link className='fp-link' to="/forgot-password">Forgot Password?</Link>
+                </p>
                 <br />
                 <button type="submit">Login</button>
             </form>
             {error && <p className="error-message">{error}</p>}
             <p className="signup-message">
-                Don't have an account? <Link to="/signup">Sign Up</Link>
+                Don't have an account? <Link className='sp-link' to="/signup">Sign Up</Link>
             </p>
         </div>
     );

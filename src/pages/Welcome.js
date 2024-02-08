@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{ useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../Store/auth-context';
+import AuthContext from '../Store/auth-context';
 import './Welcome.css';
 
 const Welcome = () => {
-    const { user } = useAuth();
+    const { user } = useContext(AuthContext);
 
     return (
         <div className="welcome-container">

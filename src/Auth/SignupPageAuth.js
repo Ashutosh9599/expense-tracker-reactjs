@@ -88,7 +88,7 @@ const SignupPage = () => {
 
             if (verificationResponse.ok) {
                 console.log('Verification email sent successfully');
-                navigate('/welcome'); // Redirect to the welcome page after verification
+                navigate('/welcome'); 
             } else {
                 setError(verificationData.error.message);
             }

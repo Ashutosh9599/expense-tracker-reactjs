@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../Store/auth-context';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../Store/auth-context';
 import './ProfileForm.css';
 
 const ProfileForm = () => {
-    const { token } = useAuth();
+    const { token } = useContext(AuthContext);
     const navigate = useNavigate();
     const [fullName, setFullName] = useState('');
     const [photoUrl, setPhotoUrl] = useState('');
@@ -29,9 +29,9 @@ const ProfileForm = () => {
                 }
 
                 const data = await response.json();
-                const user = data.users[0]; // Assuming there's only one user for this idToken
-                setFullName(user.displayName || ''); // Pre-fill fullName if available
-                setPhotoUrl(user.photoUrl || ''); // Pre-fill photoUrl if available
+                const user = data.users[0]; 
+                setFullName(user.displayName || ''); 
+                setPhotoUrl(user.photoUrl || ''); 
             } catch (error) {
                 console.error('Error fetching user profile:', error);
                 setError('Failed to fetch user profile');
