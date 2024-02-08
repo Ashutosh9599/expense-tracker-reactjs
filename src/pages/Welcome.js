@@ -1,11 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../Store/auth-context';
+import { useNavigate } from 'react-router-dom';
 import Expense from '../Layout/Expense';
 import './Welcome.css';
 
 const Welcome = () => {
-    const { user } = useContext(AuthContext);
+    const { user,token } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/');
+        }
+    }, [token, navigate]);
+
     return (
         <div className="welcome-container">
             <h2>Welcome to Expense Tracker</h2>

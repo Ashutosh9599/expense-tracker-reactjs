@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import ExpenseList from './ExpenseList';
-import './Expense.css'
+import './Expense.css';
+import { useExpense } from '../Store//ExpenseContext';
+
 const Expense = () => {
+    const { expenses, addExpense } = useExpense();
     const [showForm, setShowForm] = useState(false);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [expenses, setExpenses] = useState([]);
 
     const handleAmountChange = (e) => {
         setAmount(e.target.value);
@@ -27,7 +29,7 @@ const Expense = () => {
             description,
             category
         };
-        setExpenses([...expenses, newExpense]);
+        addExpense(newExpense);
         setAmount('');
         setDescription('');
         setCategory('');

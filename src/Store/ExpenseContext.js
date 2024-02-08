@@ -1,10 +1,8 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ExpenseContext = createContext();
 
-export const useExpense = () => useContext(ExpenseContext);
-
-const ExpenseProvider = ({ children }) => {
+export const ExpenseProvider = ({ children }) => {
     const [expenses, setExpenses] = useState([]);
 
     useEffect(() => {
@@ -28,14 +26,32 @@ const ExpenseProvider = ({ children }) => {
         };
 
         fetchExpenses();
-
     }, []);
 
+    const addExpense = async (newExpense) => {
+        try {
+            const response = await fetch('https://expense-tracker-3c382-default-rtdb.firebaseio.com/expense.json', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newExpense),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to add expense');
+            }
+            const data = await response.json();
+            setExpenses([...expenses, { id: data.name, ...newExpense }]);
+        } catch (error) {
+            console.error('Error adding expense:', error);
+        }
+    };
+
     return (
-        <ExpenseContext.Provider value={{ expenses, setExpenses }}> {/* Wrapping expenses and setExpenses in an object */}
+        <ExpenseContext.Provider value={{ expenses, addExpense }}>
             {children}
         </ExpenseContext.Provider>
     );
 };
 
-export default ExpenseProvider;
+export const useExpense = () => useContext(ExpenseContext);

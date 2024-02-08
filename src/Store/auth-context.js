@@ -12,8 +12,9 @@ export const AuthContext = React.createContext({
 export const AuthProvider = (props) => {  
   const navigate = useNavigate();
   const storedToken = localStorage.getItem('token');
+  const storedUser = localStorage.getItem('user'); 
   const [token, setToken] = useState(storedToken || '');
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null); 
   const [isLoggedIn, setIsLoggedIn] = useState(!!storedToken);
 
   const logoutHandler = () => {
@@ -21,6 +22,7 @@ export const AuthProvider = (props) => {
     setUser(null);
     setIsLoggedIn(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('user'); 
     navigate('/');
   };
 
@@ -34,10 +36,12 @@ export const AuthProvider = (props) => {
       if (response.ok) {
         const data = await response.json();
         const userProfile = data.users[0];
-        setUser({
+        const newUser = {
           displayName: userProfile.displayName || '',
           photoUrl: userProfile.photoUrl || '',
-        });
+        };
+        setUser(newUser);
+        localStorage.setItem('user', JSON.stringify(newUser)); 
       } else {
         throw new Error('Failed to fetch user profile');
       }

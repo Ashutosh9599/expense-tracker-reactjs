@@ -7,22 +7,24 @@ import LoginScreen from './Auth/LoginScreen';
 import Welcome from './pages/Welcome';
 import ProfileForm from './pages/ProfileForm';
 import ForgotPassword from './Auth/ForgotPassword';
-import { AuthProvider} from './Store/auth-context';
+import { AuthProvider } from './Store/auth-context';
+import { ExpenseProvider } from './Store/ExpenseContext';
 
 function App() {
+
   return (
     <Router>
-      <AuthProvider> 
-        <div>
+      <AuthProvider>
+        <ExpenseProvider>
           <Header />
           <Routes>
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/" element={<LoginScreen />} />
             <Route path="/welcome" element={<Welcome />} />
             <Route path="/complete-profile" element={<ProfileForm />} />
+            <Route path="/" element={<LoginScreen />} />
+            <Route path="/signup" element={<SignupPage />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>
-        </div>
+        </ExpenseProvider>
       </AuthProvider>
     </Router>
   );

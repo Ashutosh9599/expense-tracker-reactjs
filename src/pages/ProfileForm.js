@@ -12,34 +12,38 @@ const ProfileForm = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     useEffect(() => {
-        const fetchUserProfile = async () => {
-            try {
-                const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAZcxqgzb2T7zNGyr3Bm4F4KJGFYPqPfYY', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        idToken: token,
-                    }),
-                });
+        if (!token) {
+            navigate('/');
+        } else {
+            const fetchUserProfile = async () => {
+                try {
+                    const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyAZcxqgzb2T7zNGyr3Bm4F4KJGFYPqPfYY', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            idToken: token,
+                        }),
+                    });
 
-                if (!response.ok) {
-                    throw new Error('Failed to fetch user profile');
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user profile');
+                    }
+
+                    const data = await response.json();
+                    const user = data.users[0]; 
+                    setFullName(user.displayName || ''); 
+                    setPhotoUrl(user.photoUrl || ''); 
+                } catch (error) {
+                    console.error('Error fetching user profile:', error);
+                    setError('Failed to fetch user profile');
                 }
+            };
 
-                const data = await response.json();
-                const user = data.users[0]; 
-                setFullName(user.displayName || ''); 
-                setPhotoUrl(user.photoUrl || ''); 
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-                setError('Failed to fetch user profile');
-            }
-        };
-
-        fetchUserProfile();
-    }, [token]);
+            fetchUserProfile();
+        }
+    }, [token, navigate]);
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();

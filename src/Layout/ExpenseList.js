@@ -2,7 +2,7 @@ import React from 'react';
 import './ExpenseList.css'; 
 
 const ExpenseList = ({ expenses }) => {
-    if (expenses.length === 0) {
+    if (!expenses || expenses.length === 0) {
         return <p>No expenses</p>;
     }
 
