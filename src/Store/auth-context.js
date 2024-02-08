@@ -1,22 +1,30 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [authToken, setAuthToken] = useState(() => localStorage.getItem('authToken'));
     const [user, setUser] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
     const login = async (token) => {
         setAuthToken(token);
         localStorage.setItem('authToken', token);
 
         await fetchUserProfile(token);
+
+        setIsLoggedIn(true);
     };
 
     const logout = () => {
         setAuthToken(null);
         setUser(null);
         localStorage.removeItem('authToken');
+        localStorage.removeItem('idToken');
+        setIsLoggedIn(false); 
+        navigate('/');
     };
 
     const fetchUserProfile = async (token) => {
@@ -50,13 +58,13 @@ export const AuthProvider = ({ children }) => {
         const storedToken = localStorage.getItem('authToken');
         if (storedToken) {
             setAuthToken(storedToken);
-
+            setIsLoggedIn(true); 
             fetchUserProfile(storedToken);
         }
     }, []);
 
     return (
-        <AuthContext.Provider value={{ token: authToken, user, login, logout }}>
+        <AuthContext.Provider value={{ token: authToken, user, login, logout, isLoggedIn }}>
             {children}
         </AuthContext.Provider>
     );
