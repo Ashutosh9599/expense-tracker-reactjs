@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import ExpenseList from './ExpenseList';
 import './Expense.css';
-import { useExpense } from '../Store//ExpenseContext';
+import { useExpense } from '../Store/ExpenseContext';
 
 const Expense = () => {
-    const { expenses, addExpense } = useExpense();
+    const { expenses, addExpense, updateExpense, deleteExpense } = useExpense();
     const [showForm, setShowForm] = useState(false);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
+    const [editingExpense, setEditingExpense] = useState(null);
 
     const handleAmountChange = (e) => {
         setAmount(e.target.value);
@@ -24,21 +25,64 @@ const Expense = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newExpense = {
+        if (editingExpense) {
+            handleUpdate();
+        } else {
+            const newExpense = {
+                amount,
+                description,
+                category
+            };
+            addExpense(newExpense);
+            setAmount('');
+            setDescription('');
+            setCategory('');
+        }
+        setEditingExpense(null);
+        setShowForm(false);
+    };
+
+    const handleEdit = (expense) => {
+        setEditingExpense(expense);
+        setAmount(expense.amount);
+        setDescription(expense.description);
+        setCategory(expense.category);
+        setShowForm(true);
+    };
+
+    const handleUpdate = async () => {
+        const updatedExpense = {
+            id: editingExpense.id,
             amount,
             description,
-            category
+            category,
         };
-        addExpense(newExpense);
-        setAmount('');
-        setDescription('');
-        setCategory('');
+        try {
+            await updateExpense(updatedExpense);
+            setAmount('');
+            setDescription('');
+            setCategory('');
+        } catch (error) {
+            console.error('Error updating expense:', error);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await deleteExpense(id);
+            console.log('Expense successfully deleted');
+        } catch (error) {
+            console.error('Error deleting expense:', error);
+        }
     };
 
     const toggleForm = () => {
         setShowForm(!showForm);
+        setEditingExpense(null);
+        setAmount('');
+        setDescription('');
+        setCategory('');
     };
-
 
     return (
         <div>
@@ -76,14 +120,14 @@ const Expense = () => {
                             </select>
                         </div>
                         <div className="form-buttons">
-                            <button className="form-button de-submit" type="submit">Submit</button>
+                            <button className="form-button de-submit" type="submit">{editingExpense ? 'Update' : 'Submit'}</button>
                             <button className="form-button de-close" onClick={toggleForm}>Close</button>
                         </div>
                     </form>
                 </div>
             )}
 
-            <ExpenseList expenses={expenses} />
+            <ExpenseList expenses={expenses} handleEdit={handleEdit} handleDelete={handleDelete} />
         </div>
     );
 };
