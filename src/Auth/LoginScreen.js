@@ -5,7 +5,7 @@ import './LoginScreen.css';
 
 const LoginScreen = ({ onLoginSuccess }) => {
     const navigate = useNavigate();
-    const authContext = useContext(AuthContext);
+    const { login } = useContext(AuthContext); 
 
     const [formData, setFormData] = useState({
         email: '',
@@ -42,10 +42,10 @@ const LoginScreen = ({ onLoginSuccess }) => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('User has successfully logged in');
                 setError(null);
-                authContext.login(data.idToken); 
+                login(data.idToken); 
                 navigate('/welcome');
+                console.log('User has successfully logged in');
             } else {
                 setError('Invalid credentials');
             }

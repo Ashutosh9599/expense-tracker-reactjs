@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthContext from '../Store/auth-context';
+import { AuthContext } from '../Store/auth-context';
 import './ProfileForm.css';
 
 const ProfileForm = () => {
-    const { token } = useContext(AuthContext);
+    const { authState } = useContext(AuthContext);
+    const { token } = authState;
     const navigate = useNavigate();
     const [fullName, setFullName] = useState('');
     const [photoUrl, setPhotoUrl] = useState('');

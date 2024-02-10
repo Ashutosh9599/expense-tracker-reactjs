@@ -1,13 +1,15 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import AuthContext from '../Store/auth-context';
+import { logout } from '../Reducers/authReducer';
 import './Header.css';
 
 const Header = () => {
-    const { user, logout } = useContext(AuthContext);
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(state => state.auth.isLoggedIn); 
 
     const handleLogout = () => {
-        logout();
+        dispatch(logout());
     };
 
     return (
@@ -20,7 +22,7 @@ const Header = () => {
                     <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/product">Product</Link></li>
                     <li className="nav-item"><Link className="nav-link" to="/aboutus">About Us</Link></li>
-                    {user && (
+                    {isLoggedIn && (
                         <li className="nav-item">
                             <button className="logout-button" onClick={handleLogout}>Logout</button>
                         </li>

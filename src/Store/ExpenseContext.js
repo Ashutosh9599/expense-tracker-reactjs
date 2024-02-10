@@ -1,9 +1,11 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
+import expensesReducer from '../Reducers/expensesReducer';
 const ExpenseContext = createContext();
 
 export const ExpenseProvider = ({ children }) => {
-    const [expenses, setExpenses] = useState([]);
+    const [expensesState, expensesDispatch] = useReducer(expensesReducer, {
+        expenses: [],
+    });
 
     useEffect(() => {
         const fetchExpenses = async () => {
@@ -18,7 +20,7 @@ export const ExpenseProvider = ({ children }) => {
                         id: key,
                         ...data[key]
                     }));
-                    setExpenses(fetchedExpenses);
+                    expensesDispatch({ type: 'setExpenses', payload: fetchedExpenses });
                 }
             } catch (error) {
                 console.error('Error fetching expenses:', error);
@@ -41,7 +43,7 @@ export const ExpenseProvider = ({ children }) => {
                 throw new Error('Failed to add expense');
             }
             const data = await response.json();
-            setExpenses([...expenses, { id: data.name, ...newExpense }]);
+            expensesDispatch({ type: 'addExpense', payload: { id: data.name, ...newExpense } });
         } catch (error) {
             console.error('Error adding expense:', error);
         }
@@ -55,7 +57,7 @@ export const ExpenseProvider = ({ children }) => {
             if (!response.ok) {
                 throw new Error('Failed to delete expense');
             }
-            setExpenses(expenses.filter((expense) => expense.id !== id));
+            expensesDispatch({ type: 'deleteExpense', payload: id });
         } catch (error) {
             console.error('Error deleting expense:', error);
             throw error;
@@ -74,15 +76,22 @@ export const ExpenseProvider = ({ children }) => {
             if (!response.ok) {
                 throw new Error('Failed to update expense');
             }
-            setExpenses(expenses.map((expense) => (expense.id === updatedExpense.id ? updatedExpense : expense)));
+            expensesDispatch({ type: 'updateExpense', payload: updatedExpense });
         } catch (error) {
             console.error('Error updating expense:', error);
             throw error;
         }
     };
 
+    const contextValue = {
+        expensesState,
+        addExpense,
+        deleteExpense,
+        updateExpense,
+    };
+
     return (
-        <ExpenseContext.Provider value={{ expenses, addExpense, deleteExpense, updateExpense }}>
+        <ExpenseContext.Provider value={contextValue}>
             {children}
         </ExpenseContext.Provider>
     );
