@@ -2,9 +2,6 @@ import React from 'react';
 import './ExpenseList.css';
 
 const ExpenseList = ({ expenses, handleEdit, handleDelete }) => {
-    if (!expenses) {
-        return <div>Loading...</div>;
-    }
     return (
         <div className="expense-list-container">
             <h2>Expense List</h2>

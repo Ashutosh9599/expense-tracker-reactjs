@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignupPage.css';
+
 const SignupPage = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -50,7 +51,6 @@ const SignupPage = () => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('User has successfully signed up');
                 setError(null);
                 setFormData({
                     email: '',
@@ -88,7 +88,7 @@ const SignupPage = () => {
 
             if (verificationResponse.ok) {
                 console.log('Verification email sent successfully');
-                navigate('/welcome'); 
+                navigate('/welcome');  
             } else {
                 setError(verificationData.error.message);
             }
@@ -126,7 +126,6 @@ const SignupPage = () => {
                 Already have an account? <Link to="/">Login</Link>
             </p>
             {error && <p className="error-message">{error}</p>}
-
         </div>
     );
 };

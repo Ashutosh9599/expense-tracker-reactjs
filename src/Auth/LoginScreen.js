@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../Store/auth-context';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../Store/Context/auth-context';
 import './LoginScreen.css';
 
-const LoginScreen = ({ onLoginSuccess }) => {
-    const navigate = useNavigate();
-    const { login } = useContext(AuthContext); 
+const LoginScreen = () => {
+    const authContext = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -43,9 +42,8 @@ const LoginScreen = ({ onLoginSuccess }) => {
 
             if (response.ok) {
                 setError(null);
-                login(data.idToken); 
-                navigate('/welcome');
-                console.log('User has successfully logged in');
+                const idToken = data.idToken;
+                authContext.login(idToken);
             } else {
                 setError('Invalid credentials');
             }
@@ -69,7 +67,7 @@ const LoginScreen = ({ onLoginSuccess }) => {
                     <input type="password" name="password" value={formData.password} onChange={handleChange} />
                 </label>
                 <p className="Forgot-Password">
-                <Link className='fp-link' to="/forgot-password">Forgot Password?</Link>
+                    <Link className='fp-link' to="/forgot-password">Forgot Password?</Link>
                 </p>
                 <br />
                 <button type="submit">Login</button>

@@ -7,8 +7,8 @@ import LoginScreen from './Auth/LoginScreen';
 import Welcome from './pages/Welcome';
 import ProfileForm from './pages/ProfileForm';
 import ForgotPassword from './Auth/ForgotPassword';
-import { AuthProvider } from './Store/auth-context';
-import { ExpenseProvider } from './Store/ExpenseContext';
+import { AuthProvider } from './Store/Context/auth-context';
+import { ExpenseProvider } from './Store/Context/ExpenseContext';
 
 function App() {
 

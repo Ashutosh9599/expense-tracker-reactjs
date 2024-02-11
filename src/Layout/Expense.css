@@ -56,3 +56,35 @@
     background-color: #369ef4;
     color: white;
 }
+.theme-toggle-button,
+.download-button,
+.activate-premium-button {
+    padding: 14px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Add margin top for spacing */
+    margin-right: 10px; /* Add margin right for spacing between buttons */
+}
+
+/* Adjust margin for the first button */
+.theme-toggle-button {
+    margin-left: 0; /* No margin on the left side of the first button */
+}
+
+/* Adjust margin for the last button */
+.activate-premium-button {
+    margin-right: 0; /* No margin on the right side of the last button */
+}
+
+.theme-toggle-button {
+    background-color: #369ef4;
+    color: white;
+}
+
+.theme-toggle-button:hover,
+.download-button:hover,
+.activate-premium-button:hover {
+    filter: brightness(0.9); /* Decrease brightness on hover for visual feedback */
+}

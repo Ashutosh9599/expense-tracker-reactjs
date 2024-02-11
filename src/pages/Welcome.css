@@ -19,3 +19,18 @@
     color: #2196f3;
     text-decoration: none;
 }
+.profile-complete-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.profile-complete-container p {
+    margin: 0;
+}
+
+.profile-complete-container a {
+    color: #2196f3;
+    text-decoration: none;
+}

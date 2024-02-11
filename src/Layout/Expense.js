@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import ExpenseList from './ExpenseList';
 import './Expense.css';
-import { useExpense } from '../Store/ExpenseContext';
+import { useExpense } from '../Store/Context/ExpenseContext';
 
 const Expense = () => {
     const { expenses, addExpense, updateExpense, deleteExpense } = useExpense();
@@ -10,6 +10,18 @@ const Expense = () => {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [editingExpense, setEditingExpense] = useState(null);
+    const [totalExpenses, setTotalExpenses] = useState(0);
+    const [darkMode, toggleDarkMode] = useReducer((state) => !state, false);
+    const [isPremiumActivated, setIsPremiumActivated] = useState(false);
+
+    useEffect(() => {
+        const calculateTotalExpenses = () => {
+            const total = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
+            setTotalExpenses(total);
+        };
+
+        calculateTotalExpenses();
+    }, [expenses]);
 
     const handleAmountChange = (e) => {
         setAmount(e.target.value);
@@ -62,6 +74,7 @@ const Expense = () => {
             setAmount('');
             setDescription('');
             setCategory('');
+            setEditingExpense(null);
         } catch (error) {
             console.error('Error updating expense:', error);
         }
@@ -84,8 +97,24 @@ const Expense = () => {
         setCategory('');
     };
 
+    const toggleActivatePremium = () => {
+        setIsPremiumActivated(!isPremiumActivated);
+    };
+
+    const handleDownloadCSV = (data) => {
+        const csvContent = "data:text/csv;charset=utf-8," +
+            data.map((expense) => Object.values(expense).join(",")).join("\n");
+        const encodedURI = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.href = encodedURI;
+        link.download = "expenses.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
-        <div>
+        <div >
             {!showForm && <button className='de-button' onClick={toggleForm}>Daily Expenses</button>}
             {showForm && (
                 <div className="form-box">
@@ -128,6 +157,21 @@ const Expense = () => {
             )}
 
             <ExpenseList expenses={expenses} handleEdit={handleEdit} handleDelete={handleDelete} />
+            {totalExpenses > 10000 && (
+                <button className="activate-premium-button" onClick={toggleActivatePremium}>
+                    {isPremiumActivated ? 'Close Premium' : 'Activate Premium'}
+                </button>
+            )}
+            {isPremiumActivated && (
+                <div>
+                    <button className="download-button" onClick={() => handleDownloadCSV(expenses)}>
+                        Download Expenses as CSV
+                    </button>
+                    <button className="theme-toggle-button" onClick={toggleDarkMode}>
+                        {darkMode ? 'Switch to Light Theme' : 'Switch to Dark Theme'}
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
