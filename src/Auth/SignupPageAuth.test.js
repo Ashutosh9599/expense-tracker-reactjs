@@ -12,6 +12,6 @@ test('renders Signup Page  screen by default', () => {
       </Router>
     </Provider>
   );
-  const loginScreenElement = screen.getByText('Already have an account?');
-  expect(loginScreenElement).toBeInTheDocument();
+  const ScreenElement = screen.getByText('Already have an account?');
+  expect(ScreenElement).toBeInTheDocument();
 });

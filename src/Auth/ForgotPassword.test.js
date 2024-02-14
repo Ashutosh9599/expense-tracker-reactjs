@@ -12,6 +12,6 @@ test('renders Forgot password  screen by default', () => {
       </Router>
     </Provider>
   );
-  const loginScreenElement = screen.getByText('Forgot Password');
-  expect(loginScreenElement).toBeInTheDocument();
+  const ScreenElement = screen.getByText('Forgot Password');
+  expect(ScreenElement).toBeInTheDocument();
 });

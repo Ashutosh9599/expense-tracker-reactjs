@@ -10,7 +10,7 @@ test('renders starts by default', () => {
       <App />
     </Provider>
   );
-  const loginScreenElement = screen.getByText('Expense Tracker');
-  expect(loginScreenElement).toBeInTheDocument();
+  const ScreenElement = screen.getByText('Expense Tracker');
+  expect(ScreenElement).toBeInTheDocument();
 });
 

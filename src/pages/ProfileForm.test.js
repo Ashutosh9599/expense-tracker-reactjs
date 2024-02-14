@@ -15,6 +15,6 @@ test('renders Profile  page  screen by default', () => {
             </Router>
         </Provider>
     );
-    const loginScreenElement = screen.getByText('Profile Form');
-    expect(loginScreenElement).toBeInTheDocument();
+    const ScreenElement = screen.getByText('Profile Form');
+    expect(ScreenElement).toBeInTheDocument();
 });

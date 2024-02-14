@@ -15,6 +15,20 @@ test('renders Expense by default', () => {
             </Router>
         </Provider>
     );
-    const loginScreenElement = screen.getByText('Daily Expenses');
-    expect(loginScreenElement).toBeInTheDocument();
+    const ScreenElement = screen.getByText('Daily Expenses');
+    expect(ScreenElement).toBeInTheDocument();
+});
+
+test('renders Expense List by default', () => {
+    render(
+        <Provider store={store}>
+            <Router>
+                <ExpenseProvider>
+                    <Expense />
+                </ExpenseProvider>
+            </Router>
+        </Provider>
+    );
+    const ScreenElement = screen.getByText('Expense List');
+    expect(ScreenElement).toBeInTheDocument();
 });

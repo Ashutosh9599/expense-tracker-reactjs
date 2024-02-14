@@ -15,6 +15,6 @@ test('renders Welcome page  screen by default', () => {
             </Router>
         </Provider>
     );
-    const loginScreenElement = screen.getByText('Welcome to Expense Tracker');
-    expect(loginScreenElement).toBeInTheDocument();
+    const ScreenElement = screen.getByText('Welcome to Expense Tracker');
+    expect(ScreenElement).toBeInTheDocument();
 });

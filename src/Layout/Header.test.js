@@ -15,6 +15,6 @@ test('renders Header by default', () => {
             </Router>
         </Provider>
     );
-    const loginScreenElement = screen.getByText('Expense Tracker');
-    expect(loginScreenElement).toBeInTheDocument();
+    const ScreenElement = screen.getByText('Expense Tracker');
+    expect(ScreenElement).toBeInTheDocument();
 });

@@ -15,6 +15,20 @@ test('renders Login  page  screen by default', () => {
             </Router>
         </Provider>
     );
-    const loginScreenElement = screen.getByText('Email:');
-    expect(loginScreenElement).toBeInTheDocument();
+    const ScreenElement = screen.getByText('Email:');
+    expect(ScreenElement).toBeInTheDocument();
+});
+
+test('renders Login  page  screen by default', () => {
+    render(
+        <Provider store={store}>
+            <Router>
+                <ExpenseProvider>
+                    <LoginScreen />
+                </ExpenseProvider>
+            </Router>
+        </Provider>
+    );
+    const ScreenElement = screen.getByText('Password:');
+    expect(ScreenElement).toBeInTheDocument();
 });
