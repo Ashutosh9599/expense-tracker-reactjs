@@ -17,13 +17,10 @@ export const AuthProvider = (props) => {
 
   const logoutHandler = () => {
     dispatch(logout());
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
     navigate('/');
   };
 
   const loginHandler = async (token) => {
-    localStorage.setItem('token', token);
 
     try {
       const response = await fetchUserProfile(token);
