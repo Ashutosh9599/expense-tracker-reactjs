@@ -1,44 +1,80 @@
+/* Light theme */
 .expense-list-container {
-    margin: 20px;
+  margin: 20px;
 }
 
 .expense-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
-.expense-table th, .expense-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+.expense-table th,
+.expense-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 .expense-table th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .edit-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .edit-button:hover {
-    background-color: #0056b3;
-  }
-  .delete-button {
-    padding: 10px 20px;
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .delete-button:hover {
-    background-color: #b30000;
-  }
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.delete-button {
+  padding: 10px 20px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #b30000;
+}
+
+/* Dark theme */
+[data-theme='dark'] .expense-list-container {
+  background-color: #333;
+  color: #fff;
+}
+
+[data-theme='dark'] .expense-table th,
+[data-theme='dark'] .expense-table td {
+  border: 1px solid #555;
+}
+
+[data-theme='dark'] .expense-table th {
+  background-color: #444;
+}
+
+[data-theme='dark'] .edit-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+[data-theme='dark'] .edit-button:hover {
+  background-color: #0056b3;
+}
+
+[data-theme='dark'] .delete-button {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+[data-theme='dark'] .delete-button:hover {
+  background-color: #b30000;
+}

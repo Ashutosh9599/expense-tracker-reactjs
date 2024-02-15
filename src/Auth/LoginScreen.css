@@ -1,3 +1,4 @@
+/* Light theme */
 .login-container {
     width: 100%;
     max-width: 400px;
@@ -6,20 +7,20 @@
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2 {
+  }
+  
+  .login-container h2 {
     text-align: center;
     color: #2196f3;
-}
-
-.login-form label {
+  }
+  
+  .login-form label {
     display: block;
     margin-bottom: 10px;
     color: #333;
-}
-
-.login-form input {
+  }
+  
+  .login-form input {
     width: 95%;
     padding: 10px;
     margin-top: 5px;
@@ -27,9 +28,9 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
-}
-
-.login-form button {
+  }
+  
+  .login-form button {
     width: 100%;
     padding: 12px;
     background-color: #2196f3;
@@ -38,29 +39,31 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.login-form button:hover {
+  }
+  
+  .login-form button:hover {
     background-color: #1976d2;
-}
-
-.error-message {
+  }
+  
+  .error-message {
     color: #ff0000;
     margin-top: 10px;
     background-color: #ffecec;
     padding: 10px;
     border: 1px solid #ffb3b3;
     border-radius: 5px;
-}
-.signup-message {
+  }
+  
+  .signup-message {
     color: #0077ff;
     margin-top: 10px;
     background-color: #ecffff;
     padding: 10px;
     border: 1px solid #64d1e4;
     border-radius: 5px;
-}
-.Forgot-Password {
+  }
+  
+  .Forgot-Password {
     color: #0077ff;
     margin-top: 10px;
     background-color: #ecffff;
@@ -68,7 +71,15 @@
     border: 1px solid #64d1e4;
     border-radius: 5px;
     align-items: center;
-}
-.fp-link{
+  }
+  
+  .fp-link {
     margin-left: 128px;
-}
+  }
+  
+  /* Dark theme */
+  [data-theme='dark'] .login-container {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+  }

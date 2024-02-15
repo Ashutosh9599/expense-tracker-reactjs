@@ -1,3 +1,4 @@
+/* Light theme */
 .header {
   background-color: #333;
   padding: 10px;
@@ -23,7 +24,7 @@
 
 .navbar {
   display: flex;
-  justify-content: center; /* Center the navigation items */
+  justify-content: center;
 }
 
 .nav-list {
@@ -44,11 +45,11 @@
 }
 
 .nav-link:hover {
-  color: #ddd; /* Change color on hover */
+  color: #ddd;
 }
 
 .logout-button {
-  background-color: #ff0000; /* Red color for the logout button */
+  background-color: #ff0000;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -57,5 +58,31 @@
 }
 
 .logout-button:hover {
-  background-color: #cc0000; /* Darker red color on hover */
+  background-color: #cc0000;
+}
+
+/* Dark theme */
+[data-theme='dark'] .header {
+  background-color: #222;
+}
+
+[data-theme='dark'] .heading {
+  color: white;
+}
+
+[data-theme='dark'] .nav-link {
+  color: white;
+}
+
+[data-theme='dark'] .nav-link:hover {
+  color: #ddd;
+}
+
+[data-theme='dark'] .logout-button {
+  background-color: #ff0000;
+  color: white;
+}
+
+[data-theme='dark'] .logout-button:hover {
+  background-color: #cc0000;
 }

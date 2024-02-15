@@ -1,90 +1,119 @@
+/* Light theme */
 .form-box {
-    width: 50%; 
-    margin: 0 auto; 
+    width: 50%;
+    margin: 0 auto;
     padding: 20px;
-    border: 2px solid #ccc; 
-    border-radius: 10px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-}
-
-.form-container {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-container {
     display: flex;
     flex-direction: column;
-}
-
-.form-row {
+  }
+  
+  .form-row {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.form-label {
-    flex: 0 0 120px; 
+  }
+  
+  .form-label {
+    flex: 0 0 120px;
     margin-right: 10px;
-}
-
-.form-input,
-.form-select {
-    flex: 1; 
+  }
+  
+  .form-input,
+  .form-select {
+    flex: 1;
     padding: 10px;
-}
-
-.form-buttons {
+  }
+  
+  .form-buttons {
     display: flex;
     justify-content: flex-end;
-}
-
-.form-button {
+  }
+  
+  .form-button {
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-right: 10px; 
-}
-
-.de-submit {
+    margin-right: 10px;
+  }
+  
+  .de-submit {
     background-color: #4CAF50;
     color: white;
-}
-
-.de-close {
+  }
+  
+  .de-close {
     background-color: #f44336;
     color: white;
-}
-.de-button {
+  }
+  
+  .de-button {
     background-color: #369ef4;
     color: white;
-}
-.theme-toggle-button,
-.download-button,
-.activate-premium-button {
+  }
+  
+  .theme-toggle-button,
+  .download-button,
+  .activate-premium-button {
     padding: 14px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 10px; /* Add margin top for spacing */
-    margin-right: 10px; /* Add margin right for spacing between buttons */
-}
-
-/* Adjust margin for the first button */
-.theme-toggle-button {
-    margin-left: 0; /* No margin on the left side of the first button */
-}
-
-/* Adjust margin for the last button */
-.activate-premium-button {
-    margin-right: 0; /* No margin on the right side of the last button */
-}
-
-.theme-toggle-button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  .theme-toggle-button {
     background-color: #369ef4;
     color: white;
-}
-
-.theme-toggle-button:hover,
-.download-button:hover,
-.activate-premium-button:hover {
-    filter: brightness(0.9); /* Decrease brightness on hover for visual feedback */
-}
+  }
+  
+  .theme-toggle-button:hover,
+  .download-button:hover,
+  .activate-premium-button:hover {
+    filter: brightness(0.9);
+  }
+  
+  /* Dark theme */
+  [data-theme='dark'] .form-box {
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #555;
+  }
+  
+  [data-theme='dark'] .form-label {
+    color: #fff;
+  }
+  
+  [data-theme='dark'] .form-input,
+  [data-theme='dark'] .form-select {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  [data-theme='dark'] .form-button {
+    background-color: #369ef4;
+    color: white;
+  }
+  
+  [data-theme='dark'] .theme-toggle-button,
+  [data-theme='dark'] .download-button,
+  [data-theme='dark'] .activate-premium-button {
+    background-color: #369ef4;
+    color: white;
+  }
+  
+  [data-theme='dark'] .theme-toggle-button:hover,
+  [data-theme='dark'] .download-button:hover,
+  [data-theme='dark'] .activate-premium-button:hover {
+    filter: brightness(0.9);
+  }
+  

@@ -1,36 +1,53 @@
+/* Light theme */
 .welcome-container {
     text-align: center;
     margin: 20px;
     margin-top: 100px;
-}
-
-.profile-incomplete-container {
+  }
+  
+  .profile-incomplete-container {
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
-}
-
-.profile-incomplete-container p {
+  }
+  
+  .profile-incomplete-container p {
     margin: 0;
-}
-
-.profile-incomplete-container a {
+  }
+  
+  .profile-incomplete-container a {
     color: #2196f3;
     text-decoration: none;
-}
-.profile-complete-container {
+  }
+  
+  .profile-complete-container {
     border: 1px solid #ccc;
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
-}
-
-.profile-complete-container p {
+  }
+  
+  .profile-complete-container p {
     margin: 0;
-}
-
-.profile-complete-container a {
+  }
+  
+  .profile-complete-container a {
     color: #2196f3;
     text-decoration: none;
-}
+  }
+  
+  /* Dark theme */
+  [data-theme='dark'] .welcome-container {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  [data-theme='dark'] .profile-incomplete-container {
+    border: 1px solid #555;
+  }
+  
+  [data-theme='dark'] .profile-complete-container {
+    border: 1px solid #555;
+  }
+  

@@ -15,6 +15,10 @@ const Expense = () => {
     const [isPremiumActivated, setIsPremiumActivated] = useState(false);
 
     useEffect(() => {
+        document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    }, [darkMode]);
+
+    useEffect(() => {
         const calculateTotalExpenses = () => {
             const total = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
             setTotalExpenses(total);
