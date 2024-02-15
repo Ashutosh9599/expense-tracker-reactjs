@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import { Link } from 'react-router-dom';
 import AuthContext from '../Store/Context/auth-context';
 import './Header.css';
 
@@ -17,9 +16,6 @@ const Header = () => {
             </div>
             <nav className="navbar">
                 <ul className="nav-list">
-                    <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/">Product</Link></li>
-                    <li className="nav-item"><Link className="nav-link" to="/">About Us</Link></li>
                     {user && (
                         <li className="nav-item">
                             <button className="logout-button" onClick={handleLogout}>Logout</button>
