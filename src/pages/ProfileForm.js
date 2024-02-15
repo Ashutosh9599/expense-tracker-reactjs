@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../Store/Context/auth-context';
 import './ProfileForm.css';
 
@@ -32,9 +32,9 @@ const ProfileForm = () => {
                     }
 
                     const data = await response.json();
-                    const user = data.users[0]; 
-                    setFullName(user.displayName || ''); 
-                    setPhotoUrl(user.photoUrl || ''); 
+                    const user = data.users[0];
+                    setFullName(user.displayName || '');
+                    setPhotoUrl(user.photoUrl || '');
                 } catch (error) {
                     console.error('Error fetching user profile:', error);
                     setError('Failed to fetch user profile');
@@ -107,6 +107,9 @@ const ProfileForm = () => {
                     />
                 </div>
                 <button type="submit">Update Profile</button>
+                <Link to="/welcome"><button className="btn-back">
+                    Back
+                </button></Link>
             </form>
         </div>
     );

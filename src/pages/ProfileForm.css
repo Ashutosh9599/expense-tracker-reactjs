@@ -46,6 +46,20 @@ label {
   background-color: #0056b3;
 }
 
+.btn-back {
+  padding: 10px 20px;
+  margin-right: 130px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  background-color: #0056b3;
+}
+
 .error-message {
   color: #ff0000;
   margin-top: 10px;
@@ -62,21 +76,22 @@ label {
   border: 1px solid #555;
 }
 
-[data-theme='dark'] .label {
-  color: #fff;
-}
-
 [data-theme='dark'] .form-control {
   background-color: #444;
   color: #fff;
 }
 
-[data-theme='dark'] .btn-submit {
+[data-theme='dark'] .btn-submit,
+[data-theme='dark'] .btn-back {
   background-color: #007bff;
   color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-[data-theme='dark'] .btn-submit:hover {
+[data-theme='dark'] .btn-submit:hover,
+[data-theme='dark'] .btn-back:hover {
   background-color: #0056b3;
 }
 
